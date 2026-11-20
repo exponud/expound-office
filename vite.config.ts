@@ -28,6 +28,25 @@ export default defineConfig(() => {
           }
         },
       },
+      {
+        name: 'sync-github-pages-docs',
+        apply: 'build',
+        closeBundle(error?: Error): void {
+          if (error) {
+            return;
+          }
+          const distDir = path.resolve(__dirname, 'dist');
+          const docsDir = path.resolve(__dirname, 'docs');
+          const distIndex = path.resolve(distDir, 'index.html');
+          const distAssets = path.resolve(distDir, 'assets');
+          if (fs.existsSync(distIndex) && fs.existsSync(distAssets)) {
+            fs.rmSync(docsDir, {recursive: true, force: true});
+            fs.mkdirSync(docsDir, {recursive: true});
+            fs.copyFileSync(distIndex, path.resolve(docsDir, 'index.html'));
+            fs.cpSync(distAssets, path.resolve(docsDir, 'assets'), {recursive: true, force: true});
+          }
+        },
+      },
     ],
     resolve: {
       alias: {
