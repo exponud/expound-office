@@ -39,11 +39,15 @@ export default defineConfig(() => {
           const docsDir = path.resolve(__dirname, 'docs');
           const distIndex = path.resolve(distDir, 'index.html');
           const distAssets = path.resolve(distDir, 'assets');
+          const distFavicon = path.resolve(distDir, 'favicon.ico');
           if (fs.existsSync(distIndex) && fs.existsSync(distAssets)) {
             fs.rmSync(docsDir, {recursive: true, force: true});
             fs.mkdirSync(docsDir, {recursive: true});
             fs.copyFileSync(distIndex, path.resolve(docsDir, 'index.html'));
             fs.cpSync(distAssets, path.resolve(docsDir, 'assets'), {recursive: true, force: true});
+            if (fs.existsSync(distFavicon)) {
+              fs.copyFileSync(distFavicon, path.resolve(docsDir, 'favicon.ico'));
+            }
           }
         },
       },

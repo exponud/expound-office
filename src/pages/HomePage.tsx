@@ -20,6 +20,8 @@ import { InteractiveEcosystem } from '@/src/components/InteractiveEcosystem';
 import { ProductPreviewStudio } from '@/src/components/ProductPreviewStudio';
 import { IdeaToInnovation } from '@/src/components/IdeaToInnovation';
 import { HorizontalWorkReel } from '@/src/components/HorizontalWorkReel';
+import { Hero3DShowcase } from '@/src/components/Hero3DShowcase';
+import { CodeArchitectureLab } from '@/src/components/CodeArchitectureLab';
 import heroStudioImg from '@/src/assets/images/hero_commerce_architecture_1795162904296.jpg';
 
 const MARQUEE_ITEMS = [
@@ -44,8 +46,8 @@ export function HomePage() {
 
   return (
     <div>
-      {/* 1. HERO SECTION — Interactive Spotlight + Masked Kinetic Headline + Parallax Visual + Magnetic CTA */}
-      <section className="relative bg-[#F9F9F7] pt-12 pb-16 lg:pt-20 lg:pb-24 border-b border-[#E4E4DF] overflow-hidden">
+      {/* 1. HERO SECTION — Interactive Spotlight + Masked Kinetic Headline + 3D Architectural Stage */}
+      <section className="relative bg-[#F9F9F7] pt-12 pb-16 lg:pt-20 lg:pb-24 border-b border-[#E4E4DF] overflow-x-clip">
         <InteractiveSpotlight />
         <div
           aria-hidden="true"
@@ -58,7 +60,7 @@ export function HomePage() {
         />
 
         <div className="relative max-w-[1280px] mx-auto px-6 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Left Typographic Anchor */}
             <div className="lg:col-span-6 flex flex-col justify-between py-2">
               <div>
@@ -117,26 +119,14 @@ export function HomePage() {
               </motion.div>
             </div>
 
-            {/* Right Dominant Architectural Visual with Parallax + Tilt */}
+            {/* Right Dominant 3D Architectural Stage (Idle Orbital Motion + Hover Z-Depth Lift) */}
             <motion.div
-              initial={{ opacity: 0, y: 22, scale: 0.98 }}
+              initial={{ opacity: 0, y: 22, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.75, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-6"
             >
-              <TiltCard maxTilt={2.5} className="h-full">
-                <ParallaxFrame
-                  offset={22}
-                  className="w-full aspect-[16/10] lg:aspect-auto lg:h-full min-h-[320px] lg:min-h-[460px] rounded-2xl border border-[#E4E4DF] bg-[#14161A]"
-                >
-                  <ResilientImage
-                    src={heroStudioImg}
-                    alt="Expound Coderz architectural software engineering workspace"
-                    fallbackTitle="Expound Coderz Studio"
-                    className="w-full h-full object-cover"
-                  />
-                </ParallaxFrame>
-              </TiltCard>
+              <Hero3DShowcase imageSrc={heroStudioImg} />
             </motion.div>
           </div>
 
@@ -513,7 +503,10 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* 9. ABOUT EXPOUND CODERZ */}
+      {/* 9. INTERACTIVE CODE CRAFT & RUNTIME WORKBENCH */}
+      <CodeArchitectureLab />
+
+      {/* 10. ABOUT EXPOUND CODERZ */}
       <section className="bg-[#F9F9F7] py-24 lg:py-28 border-b border-[#E4E4DF]">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
